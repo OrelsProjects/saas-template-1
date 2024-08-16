@@ -2,9 +2,14 @@
 
 import React from "react";
 import useAuth from "../../lib/hooks/useAuth";
+import { useAppSelector } from "../../lib/hooks/redux";
+import { selectAuth } from "../../lib/features/auth/authSlice";
 
 export default function LoginPage() {
   const { signInWithGoogle } = useAuth();
+
+  // Read the auth state
+  const { state } = useAppSelector(selectAuth);
 
   return (
     <div>
@@ -15,6 +20,8 @@ export default function LoginPage() {
       >
         Login With Google
       </button>
+      <h1 className="font-bold text-xl">State: </h1>
+      <span>{state}</span>
     </div>
   );
 }
